@@ -1,0 +1,185 @@
+*,
+*::after,
+::before {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   text-decoration: none;
+   list-style: none;
+   font-family: "Source Code Pro";
+}
+
+:root {
+   --cell-size: 100px;
+   --mark-size: calc(var(--cell-size)*.9);
+}
+
+
+body {
+   /* width: 100%;
+   height: 100vh; */
+   background-color: #321E1E;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+}
+
+h1{
+   font-size: 2rem;
+   color: #4E3636;
+}
+
+
+.board {
+   height: 100vh;
+   width: 100vw;
+   display: grid;
+   justify-content: center;
+   justify-items: center;
+   align-content: center;
+   align-items: center;
+   grid-template-columns: repeat(3, auto);
+}
+
+.cell.x::before,
+.cell.x::after {
+   background-color: #116D6E;
+}
+.cell.circle::before,
+.cell.circle::after {
+   background-color: #CD1818;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+   background-color: #5e3636;
+}
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+   background-color: #5e3636;
+}
+
+
+
+.cell {
+   background-color: #321E1E;
+   width: var(--cell-size);
+   height: var(--cell-size);
+   border: 1px solid rgb(199, 74, 74);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+}
+
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+   border-top: none;
+}
+
+.cell:last-child,
+.cell:nth-child(8),
+.cell:nth-child(7) {
+   border-bottom: none;
+}
+
+
+.cell.cell:nth-child(3n + 1) {
+   border-left: none;
+}
+
+.cell.cell:nth-child(3n + 3) {
+   border-right: none;
+}
+
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+   content: "";
+   position: absolute;
+   width: calc(var(--mark-size) * .15);
+   height: var(--mark-size);
+}
+
+
+.cell.x::before,
+.board.x .cell:hover::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
+   transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:hover::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
+   transform: rotate(-45deg);
+}
+
+
+
+
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+   content: "";
+   position: absolute;
+   border-radius: 50%;
+}
+
+
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+   width: var(--mark-size);
+   height: var(--mark-size);
+
+}
+
+
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+   width: calc(var(--mark-size) * .7);
+   height: calc(var(--mark-size) * .7);
+   background-color: #321E1E;
+}
+
+.cell.x,
+.cell.circle {
+   cursor: not-allowed
+}
+
+.winnig-message.show{
+   display: flex;
+   font-family: cursive;
+}
+
+.winnig-message{
+   display: none;
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   justify-content: center;
+   align-items: center;
+   color: yellow;
+   background-color: rgba(85, 85, 85, 0.302);
+   font-size: 5rem;
+   flex-direction: column;
+}
+.winnig-message button{
+   font-size: 3rem;
+   padding: .2em .5em;
+   cursor: pointer;
+   border: 1px solid black;
+}
+.winnig-message button:hover{
+   background-color: black;
+   color: snow;
+   border-color: white;
+}
